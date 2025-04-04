@@ -1,3 +1,82 @@
 <resources>
     <string name="app_name">MyCity</string>
+    <string name="food_screen_name">Еда</string>
+    <string name="coffee_screen_name">Кофе</string>
+    <string name="mall_screen_name">Торговые центры</string>
+    <string name="gym_screen_name">Тренажерные залы</string>
+
+    <string name="food_1">Янтарь</string>
+    <string name="food_1_address">ул. Фрунзе, 32</string>
+
+    <string name="food_2">Sherwood</string>
+    <string name="food_2_address">ул. Липовенко, 4В</string>
+
+    <string name="food_3">Жарим мясо</string>
+    <string name="food_3_address">ул. Ленина, 59А</string>
+
+    <string name="food_4">Наше кафе</string>
+    <string name="food_4_address">ул. Ленина, 64</string>
+
+    <string name="food_5">Burger house</string>
+    <string name="food_5_address">ул. Ленина, 60</string>
+
+    <string name="food_6">Hollywood</string>
+    <string name="food_6_address">ул. Липовенко, 5</string>
+
+    <string name="food_7">Portofino</string>
+    <string name="food_7_address">просп. Металлургов, 12/1</string>
+
+    <string name="food_8">Лав пицца</string>
+    <string name="food_8_address">ул. Ленина, 82А</string>
+
+    <string name="food_9">Кругозор</string>
+    <string name="food_9_address">Набережная ул., 29</string>
+
+    <string name="food_10">Matteo</string>
+    <string name="food_10_address">просп. Металлургов, 10</string>
+
+    <string name="coffee_1">Coffee time</string>
+    <string name="coffee_1_address">ул. Ленина, 17А</string>
+
+    <string name="coffee_2">Кофеин</string>
+    <string name="coffee_2_address">ул. Фрунзе, 43</string>
+
+    <string name="coffee_3">Bunker</string>
+    <string name="coffee_3_address">Московская ул., 11</string>
+
+    <string name="coffee_4">Coffee station</string>
+    <string name="coffee_4_address">ул. Ленина, 82А</string>
+
+    <string name="coffee_5">Булкoff</string>
+    <string name="coffee_5_address">Московская ул., 6</string>
+
+    <string name="mall_1">Aurum</string>
+    <string name="mall_1_address">Ленинградская ул., 38</string>
+
+    <string name="mall_2">Столица</string>
+    <string name="mall_2_address">ул. Гмыри, 55</string>
+
+    <string name="mall_3">Торговый центр</string>
+    <string name="mall_3_address">ул. Ленина, 80А</string>
+
+    <string name="mall_4">Сфера</string>
+    <string name="mall_4_address">просп. Металлургов, 4Б</string>
+
+    <string name="mall_5">Маяк</string>
+    <string name="mall_5_address">ул. Ленина, 86/1</string>
+
+    <string name="mall_6">Март</string>
+    <string name="mall_6_address">ул. Гмыри, 47А</string>
+
+    <string name="mall_7">Cornelli</string>
+    <string name="mall_7_address">ул. Ленина, 56</string>
+
+    <string name="gym_1">Стимул</string>
+    <string name="gym_1_address">просп. Ленина, 10</string>
+
+    <string name="gym_2">Олимп</string>
+    <string name="gym_2_address">ул. Гмыри, 57/1</string>
+
+    <string name="gym_3">Спартак</string>
+    <string name="gym_3_address">ул. Ленина, 62</string>
 </resources>

@@ -79,4 +79,9 @@
 
     <string name="gym_3">Спартак</string>
     <string name="gym_3_address">ул. Ленина, 62</string>
+
+    <string name="food">Ресторан</string>
+    <string name="coffee">Кофейня</string>
+    <string name="mall">Торговый центр</string>
+    <string name="gym">Тренажерный зал</string>
 </resources>

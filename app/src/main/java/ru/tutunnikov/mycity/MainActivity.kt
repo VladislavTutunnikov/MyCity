@@ -30,6 +30,8 @@ import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.mapview.MapView
+import ru.tutunnikov.mycity.data.local.LocalPlacesDataProvider
+import ru.tutunnikov.mycity.ui.DetailsScreen
 import ru.tutunnikov.mycity.ui.theme.MyCityTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,20 +41,10 @@ class MainActivity : ComponentActivity() {
         MapKitFactory.initialize(this)
         enableEdgeToEdge()
         setContent {
-            MyCityTheme(darkTheme = true) {
+            MyCityTheme(darkTheme = false) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(20.dp).fillMaxSize()
-                    ) {
-                        YandexMap(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(300.dp)
-                                .clip(RoundedCornerShape(15.dp))
-                        )
-                    }
+                    DetailsScreen(LocalPlacesDataProvider.listOfPlaces[6])
+
                 }
             }
         }
@@ -75,31 +67,5 @@ fun GreetingPreview() {
     }
 }
 
-@Composable
-fun YandexMap(
-    modifier: Modifier = Modifier,
-    initialLocation: Point = Point(48.470589, 38.829373) // Москва по умолчанию
-) {
-    val context = LocalContext.current
-    val mapView = remember { MapView(context) }
-    
-    DisposableEffect(Unit) {
-        MapKitFactory.getInstance().onStart()
-        onDispose {
-            mapView.onStop()
-            MapKitFactory.getInstance().onStop()
-        }
-    }
 
-    AndroidView(
-        modifier = modifier,
-        factory = { mapView }
-    ) { view ->
-        view.mapWindow.map.move(
-            CameraPosition(initialLocation, 18f, 0f, 0f),
-            Animation(Animation.Type.SMOOTH, 1f),
-            null
-        )
-    }
-}
 

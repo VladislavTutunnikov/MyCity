@@ -6,6 +6,15 @@ import ru.tutunnikov.mycity.data.Place
 import ru.tutunnikov.mycity.data.PlaceType
 
 object LocalPlacesDataProvider {
+
+    val defaultPlace = Place(
+        imageId = R.drawable.food_1,
+        name = R.string.food_1,
+        address = R.string.food_1_address,
+        mapCoordinates = Point(48.466963, 38.799980),
+        placeType = PlaceType.Food
+    )
+
     val listOfPlaces = listOf(
         Place(
             imageId = R.drawable.food_1,

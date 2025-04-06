@@ -2,9 +2,7 @@ package ru.tutunnikov.mycity.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -17,13 +15,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -52,8 +52,7 @@ fun DetailsScreen(
     place: Place,
     modifier: Modifier = Modifier
 ) {
-    val configuration = LocalConfiguration.current
-    val title = when(place.placeType) {
+    val title = when (place.placeType) {
         PlaceType.Gym -> R.string.gym
         PlaceType.Food -> R.string.food
         PlaceType.Mall -> R.string.mall
@@ -61,15 +60,27 @@ fun DetailsScreen(
         else -> R.string.food
     }
 
+    Scaffold(
+        topBar = { DetailsScreenTopBar(title = title) }
+    ) {
+        DetailsScreenContent(
+            place = place,
+            modifier = Modifier.fillMaxSize()//.padding(it)
+        )
+    }
+}
 
+@Composable
+fun DetailsScreenContent(
+    place: Place,
+    modifier: Modifier = Modifier
+) {
+    val screenConfiguration = LocalConfiguration.current
     LazyColumn(
         contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
     ) {
         item {
-            DetailsScreenTopBar(title = title)
-
             Image(
                 painter = painterResource(place.imageId),
                 contentDescription = stringResource(place.name),
@@ -94,46 +105,42 @@ fun DetailsScreen(
                     initialLocation = place.mapCoordinates,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(configuration.screenWidthDp.dp)
+                        .height(screenConfiguration.screenWidthDp.dp)
                         .clip(MaterialTheme.shapes.medium)
                 )
             }
-
         }
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreenTopBar(
     title: Int,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.fillMaxWidth().padding(vertical = 8.dp)
-    ) {
-//        IconButton(
-//            onClick = TODO("onclick")
-//        ) {
-//            Icon(
-//                imageVector = Icons.Rounded.ArrowBack,
-//                contentDescription = null
-//            )
-//        }
-        Icon(
-            imageVector = Icons.Rounded.ArrowBack,
-            contentDescription = null,
-            modifier = Modifier.size(35.dp)
-        )
-        Spacer(Modifier.weight(1f))
-        Text(
-            text = stringResource(title),
-            style = Typography.bodyLarge,
-            fontSize = 30.sp,
-        )
-        Spacer(Modifier.weight(1.5f))
-    }
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(title),
+                style = Typography.bodyLarge,
+                fontSize = 25.sp,
+            )
+        },
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Rounded.ArrowBack,
+                contentDescription = null,
+                modifier = Modifier.padding(start = 8.dp).size(35.dp)
+            )
+        },
+        windowInsets = WindowInsets(
+            top = 0.dp,
+            bottom = 0.dp
+        ),
+        modifier = modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
+    )
 
 }
 

@@ -76,4 +76,5 @@ dependencies {
     implementation(libs.androidx.navigation.compose.v274)
     implementation(libs.maps.mobile)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.accompanist.systemuicontroller)
 }

@@ -59,7 +59,8 @@ fun HomeScreen(
         )
     } else {
         DetailsScreen(
-            place = uiState.currentSelectedPlace
+            place = uiState.currentSelectedPlace,
+            onDetailScreenBackPressed = onDetailScreenBackPressed
         )
     }
 

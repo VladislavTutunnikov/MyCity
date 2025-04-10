@@ -1,5 +1,7 @@
 package ru.tutunnikov.mycity.ui
 
+import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -18,6 +20,7 @@ import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -47,11 +50,18 @@ import ru.tutunnikov.mycity.data.PlaceType
 import ru.tutunnikov.mycity.data.local.LocalPlacesDataProvider
 import ru.tutunnikov.mycity.ui.theme.Typography
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun DetailsScreen(
     place: Place,
+    onDetailScreenBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    BackHandler {
+        onDetailScreenBackPressed()
+    }
+
     val title = when (place.placeType) {
         PlaceType.Gym -> R.string.gym
         PlaceType.Food -> R.string.food
@@ -61,11 +71,16 @@ fun DetailsScreen(
     }
 
     Scaffold(
-        topBar = { DetailsScreenTopBar(title = title) }
+        topBar = { DetailsScreenTopBar(
+            title = title,
+            onDetailScreenBackPressed = onDetailScreenBackPressed
+            )
+        }
     ) {
         DetailsScreenContent(
             place = place,
-            modifier = Modifier.fillMaxSize()//.padding(it)
+            modifier = Modifier.fillMaxSize()
+                //.padding(it)
         )
     }
 }
@@ -118,6 +133,7 @@ fun DetailsScreenContent(
 @Composable
 fun DetailsScreenTopBar(
     title: Int,
+    onDetailScreenBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     CenterAlignedTopAppBar(
@@ -128,12 +144,18 @@ fun DetailsScreenTopBar(
                 fontSize = 25.sp,
             )
         },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Rounded.ArrowBack,
-                contentDescription = null,
-                modifier = Modifier.padding(start = 8.dp).size(35.dp)
-            )
+        navigationIcon = @androidx.compose.runtime.Composable {
+            IconButton(
+                onClick = onDetailScreenBackPressed,
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .size(35.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.ArrowBack,
+                    contentDescription = null,
+                )
+            }
         },
         windowInsets = WindowInsets(
             top = 0.dp,
@@ -141,6 +163,10 @@ fun DetailsScreenTopBar(
         ),
         modifier = modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
     )
+
+}
+
+fun CenterAlignedTopAppBar(title: () -> Unit, modifier: Unit, windowInsets: WindowInsets, modifier1: Modifier) {
 
 }
 
@@ -170,10 +196,4 @@ fun YandexMap(
             null
         )
     }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun DetailsScreenPreview() {
-    DetailsScreen(LocalPlacesDataProvider.listOfPlaces[6])
 }

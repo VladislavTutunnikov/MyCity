@@ -77,4 +77,5 @@ dependencies {
     implementation(libs.maps.mobile)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.material3.window.size.class1)
 }

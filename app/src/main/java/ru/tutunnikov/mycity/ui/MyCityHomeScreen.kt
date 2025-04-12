@@ -6,7 +6,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -15,6 +17,7 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import ru.tutunnikov.mycity.R
 import ru.tutunnikov.mycity.data.Place
 import ru.tutunnikov.mycity.data.PlaceType
@@ -166,7 +169,10 @@ fun MyCityNavigationRail(
     navItemsList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
-    NavigationRail(modifier = modifier) {
+    NavigationRail(
+        modifier = modifier
+    ) {
+        Spacer(Modifier.weight(1f))
         for (navItem in navItemsList) {
             NavigationRailItem(
                 selected = currentTab == navItem.placeType,
@@ -176,9 +182,11 @@ fun MyCityNavigationRail(
                         painter = painterResource(navItem.icon),
                         contentDescription = null
                     )
-                }
+                },
+                modifier = Modifier.padding(vertical = 16.dp)
             )
         }
+        Spacer(Modifier.weight(1f))
     }
 }
 

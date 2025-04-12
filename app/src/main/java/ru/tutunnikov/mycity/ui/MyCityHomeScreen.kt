@@ -183,7 +183,7 @@ fun MyCityNavigationRail(
                         contentDescription = null
                     )
                 },
-                modifier = Modifier.padding(vertical = 16.dp)
+                modifier = Modifier.padding(vertical = 8.dp)
             )
         }
         Spacer(Modifier.weight(1f))
